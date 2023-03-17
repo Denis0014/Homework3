@@ -26,9 +26,14 @@ namespace HomeWork3
         /// <summary>
         /// Проверяет корректность IPv4 Адреса
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="s">Исходная строка</param>
         /// <returns>(false, true)</returns>
         static bool CheckIP(string s) => Regex.IsMatch(s, @"\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b");
+        /// <summary>
+        /// Разделяет слова написанне методом CamelCase
+        /// </summary>
+        /// <param name="s">Исходная строка</param>
+        static void UnCamelCase(string s) => s = Regex.Replace(s, @"(?<=[A-Z])(\w+?)(?=[A-Z])", x => x.Groups[1].Value + x.Groups[2].Value + " ");
         static void Main(string[] args)
         {
             // Задание 1
@@ -39,6 +44,10 @@ namespace HomeWork3
             Console.WriteLine(s);
             // Задание 3
             Console.WriteLine($"{CheckIP("255.255.255.255")} {CheckIP("0.0.0.0")} {CheckIP("128.0.0.1")} {CheckIP("256.0.0.0")}");
+            // Задание 4
+            s = "ThisIsSomeText";
+            UnCamelCase(s);
+            Console.WriteLine(s);
         }
     }
 }
